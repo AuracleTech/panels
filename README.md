@@ -1,6 +1,6 @@
 # panels
 
-panels module in TypeScript for easy window-style panels management
+panels module in TypeScript for easy window-style panels
 
 ##### Example
 
@@ -8,7 +8,7 @@ panels module in TypeScript for easy window-style panels management
 
 ##### Requirements
 
-- get `panels.css`, `panels.ts` and `panels.png`
+- `panels.css`, `panels.ts` and `panels.png`
 
 ##### Usage
 
