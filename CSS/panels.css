@@ -2,19 +2,11 @@
 	--panels-bar-height: 40px;
 }
 
-.panels {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	position: fixed;
-	top: 0;
-	left: 0;
-}
 .panels.numb {
 	pointer-events: none;
 }
 .panels.resizing {
-	background: #ab2eff11;
+	outline: 55px solid #ab2eff11;
 }
 .panels.resizing>.panel.focus>.bar {
 	background-image: linear-gradient(#ab2eff 4px, transparent 4px);
@@ -31,8 +23,6 @@
 
 .panel {
 	position: fixed;
-	display: flex;
-	flex-direction: column;
 	max-width: 100%;
 	max-height: 100%;
 	min-width: 160px;
@@ -41,6 +31,9 @@
 	color: #e3e8e5;
 	border-radius: 1px;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	font-family: Arial, sans-serif;
 }
 .panel>.bar {
 	flex-shrink: 0;
@@ -54,6 +47,9 @@
 .panel>.bar>.grab {
 	min-width: var(--panels-bar-height);
 	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .panel>.bar>.close {
 	position: relative;
