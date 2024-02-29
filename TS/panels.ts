@@ -165,10 +165,10 @@ class Panel extends HTMLElement {
 				left: ev.clientX - x,
 			});
 		const pointerup = () => {
-			this.parent.classList.remove("numb", "grabbing");
+			this.parent.classList.remove("grabbing");
 			removeEventListener("pointermove", pointermove);
 		};
-		this.parent.classList.add("numb", "grabbing");
+		this.parent.classList.add("grabbing");
 		addEventListener("pointermove", pointermove);
 		addEventListener("pointerup", pointerup, { once: true });
 	}
@@ -181,7 +181,7 @@ class Panel extends HTMLElement {
 	}
 
 	resizing() {
-		this.parent.classList.add("numb", "resizing");
+		this.parent.classList.add("resizing");
 
 		const down = (ev: PointerEvent) => {
 			const max_size = this.parent.getBoundingClientRect();
@@ -205,7 +205,7 @@ class Panel extends HTMLElement {
 				this.reposition({ top, left });
 			};
 			const up = () => {
-				this.parent.classList.remove("numb", "resizing");
+				this.parent.classList.remove("resizing");
 				removeEventListener("pointermove", move);
 			};
 			addEventListener("pointermove", move);
@@ -255,7 +255,7 @@ class Panel extends HTMLElement {
 			};
 			this.fresize();
 		}
-		this.classList.toggle("squish");
+		this.classList.toggle("squished");
 	}
 
 	maximize() {
