@@ -1,6 +1,5 @@
 # TODO
 
-- improve hover style on option
 - during a resize the panel shake, intolerable behavior
 - make .panel min-width depend on the amount of .bar .option
 - rename squish > squish bad practice, maybe squished?
