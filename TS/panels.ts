@@ -222,7 +222,6 @@ class Panel extends HTMLElement {
 
 	falternate() {
 		this.alternate.classList.toggle("restore");
-		this.alternate.title = this.preserved ? "Preserve" : "Restore";
 		if (!this.preserved)
 			this.preserved = {
 				width: this.clientWidth,
