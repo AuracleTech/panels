@@ -97,11 +97,6 @@ class Panel extends HTMLElement {
 			...options,
 		};
 
-		this.close.title = "Close";
-		this.resize.title = "Resize";
-		this.alternate.title = "Preserve";
-		this.squish.title = "Squish";
-
 		this.classList.add("panel");
 		this.bar.classList.add("bar");
 		this.close.classList.add("close", "option");
