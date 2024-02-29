@@ -1,3 +1,5 @@
+import "../SCSS/panels.scss";
+
 class Panels extends HTMLElement {
 	cursor_pos = { x: 0, y: 0 };
 	panels: Panel[] = [];
