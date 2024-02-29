@@ -127,7 +127,7 @@ class Panel extends HTMLElement {
 			})
 		);
 		resizeObserver.observe(this);
-		this.close.addEventListener("pointerup", (ev) => this.fclose(ev));
+		this.close.addEventListener("pointerdown", (ev) => this.fclose(ev));
 		this.grab.addEventListener("pointerdown", (ev) => this.fgrab(ev));
 		if (this.options.resizable)
 			this.grab.addEventListener("dblclick", () => this.maximize());
@@ -155,7 +155,13 @@ class Panel extends HTMLElement {
 
 	fclose(ev: MouseEvent) {
 		ev.stopPropagation();
-		this.parent.close_panel(this);
+		const pointerup = (ev: PointerEvent) => {
+			if (ev.target === this.close) this.parent.close_panel(this);
+		};
+		const transitionend = () => {
+			addEventListener("pointerup", pointerup, { once: true });
+		};
+		this.close.addEventListener("transitionend", transitionend, { once: true });
 	}
 
 	fgrab(ev: PointerEvent) {
