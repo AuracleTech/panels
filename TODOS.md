@@ -1,8 +1,15 @@
 # TODO
 
-- [ ] make close button hold to close
-- [ ] during a resize the panel shake, intolerable behavior
+- make close button hold to close
+- improve hover style on option
+- during a resize the panel shake, intolerable behavior
+- make .panel min-width depend on the amount of .bar .option
+- rename squish > squish bad practice, maybe squished?
+- display .flexible only when panel is not already flexible
+- improve resizable option | custom resize and flexible are both resize so its unprecise
+- make icons svg? how to color them then?
+- remove close on right click
 
-- [ ] example image
-- [ ] usage README.md
-- [ ] verify requirements README.md
+- example image
+- usage README.md
+- verify requirements README.md

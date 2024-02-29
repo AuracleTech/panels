@@ -19,28 +19,16 @@
 .panels.numb {
 	pointer-events: none;
 }
-.panels.resizing>.panel.focus>.bar {
-	background-image: linear-gradient(#ab2eff 4px, transparent 4px);
-}
-.panels.grabbing>.panel.focus>.bar>.grab {
-	cursor: grabbing;
-}
-.panels.grabbing>.panel.focus>.bar {
-	background-image: linear-gradient(#2eff9d 4px, transparent 4px);
-}
-
-/* TODO make min-width depending on about of options */
 .panel {
 	position: fixed;
 	max-width: 100%;
 	max-height: 100%;
 	min-width: 240px;
 	min-height: var(--panels-bar-height);
-	background-color: #1e1d2e;
-	color: #e3e8e5;
-	border-radius: 1px;
 	overflow: hidden;
 	font-family: Arial, sans-serif;
+	background-color: #1e1d2e;
+	color: #e3e8e5;
 	display: flex;
 	flex-direction: column;
 }
@@ -49,9 +37,19 @@
 	display: flex;
 	height: var(--panels-bar-height);
 	width: 100%;
+	user-select: none;
 }
 .panel.focus>.bar {
-	background-image: linear-gradient(#2fa6ff 4px, transparent 4px);
+	background: #2fa6ff;
+}
+.panels.resizing>.panel.focus>.bar {
+	background: #ab2eff;
+}
+.panels.grabbing>.panel.focus>.bar>.grab {
+	cursor: grabbing;
+}
+.panels.grabbing>.panel.focus>.bar {
+	background: #2eff9d;
 }
 .panel>.bar>.grab {
 	min-width: var(--panels-bar-height);
@@ -61,17 +59,14 @@
 	background-position: -40px -80px;
 }
 .panel>.bar>.close {
-	position: relative;
+	/*  */
+}
+.panel>.bar>.close:active:hover {
+	background-color: #AB0B52 !important;
+	transition: background-color 1s;
 }
 .panel>.bar>.close:hover {
-	filter: invert(14%) sepia(35%) saturate(7392%) hue-rotate(319deg) brightness(98%) contrast(104%) !important;
-}
-.panel.focus>.bar>.close:hover::after {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-image: linear-gradient(#000000 4px, transparent 4px);
+	/* filter: invert(86%) sepia(35%) saturate(7392%) hue-rotate(319deg) brightness(98%) contrast(104%) !important; */
 }
 .panel>.bar>.resize {
 	background-position: -80px 0px;
@@ -89,7 +84,6 @@
 .panel>.bar>.squish {
 	background-position: 0px -80px;
 }
-/* TODO rename squish > squish bad practice, maybe squished */
 .panel.squish>.bar>.squish {
 	background-position: -80px -40px;
 }
@@ -97,12 +91,12 @@
 	cursor: pointer;
 	min-height: var(--panels-bar-height);
 	min-width: var(--panels-bar-height);
-	filter: invert(1);
 	background-repeat: no-repeat;
 	background-image: url("../IMG/panels.png");
 }
 .panel>.bar>.option:hover {
-	filter: invert(70%) sepia(41%) saturate(7477%) hue-rotate(184deg) brightness(104%) contrast(101%);
+	background-color: #0bab5b;
+	/* filter: invert(30%) sepia(41%) saturate(7477%) hue-rotate(184deg) brightness(104%) contrast(101%); */
 }
 .panel>.content {
 	width: 100%;

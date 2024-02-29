@@ -20,5 +20,3 @@ const panel_gradient: Panel = panels.new_panel();
 const gradient = document.createElement("div");
 gradient.classList.add("gradient");
 panel_gradient.content.append(gradient);
-
-// TODO display flexible only when panel is not already flexible

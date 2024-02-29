@@ -64,7 +64,6 @@ interface PanelOptions {
 class Panel extends HTMLElement {
 	parent: Panels;
 	options: PanelOptions = {
-		// TODO improve resizable attribute | custom resize and flexible resize
 		resizable: false,
 		preservable: false,
 		spawn_at_random: true,
