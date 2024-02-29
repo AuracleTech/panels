@@ -1,13 +1,12 @@
 import { Panels, Panel } from "./panels.ts";
 
 const panels = new Panels();
-
 document.body.append(panels);
 
-const panel_hello_world: Panel = panels.new_panel();
-panel_hello_world.content.textContent = "Hello, world!";
+const panel_text: Panel = panels.new_panel();
+panel_text.content.textContent = "Hello, world!";
 
-const panel_resizable: Panel = panels.new_panel({
+const panel_image: Panel = panels.new_panel({
 	resizable: true,
 	preservable: true,
 	spawn_at_random: true,
@@ -15,10 +14,10 @@ const panel_resizable: Panel = panels.new_panel({
 });
 const image = document.createElement("div");
 image.classList.add("random-image");
-panel_resizable.content.append(image);
+panel_image.content.append(image);
 
-const panel_3: Panel = panels.new_panel();
-panel_3.grab.textContent = "Blade Runner 2049";
-const grad = document.createElement("div");
-grad.classList.add("gradient");
-panel_3.content.append(grad);
+const panel_gradient: Panel = panels.new_panel();
+panel_gradient.grab.textContent = "Blade Runner 2049";
+const gradient = document.createElement("div");
+gradient.classList.add("gradient");
+panel_gradient.content.append(gradient);

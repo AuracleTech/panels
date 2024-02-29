@@ -2,20 +2,28 @@
 	--panels-bar-height: 40px;
 }
 
-.panels.numb {
+.panels::after {
+	background: transparent;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	content: "";
 	pointer-events: none;
 }
-.panels.resizing {
-	outline: 55px solid #ab2eff11;
+.panels.resizing::after {
+	background: #ab2eff11;
+}
+.panels.grabbing::after {
+	background: #2eff9d11;
+}
+.panels.numb {
+	pointer-events: none;
 }
 .panels.resizing>.panel.focus>.bar {
 	background-image: linear-gradient(#ab2eff 4px, transparent 4px);
 }
 .panels.grabbing>.panel.focus>.bar>.grab {
 	cursor: grabbing;
-}
-.panels.grabbing {
-	background: #2eff9d11;
 }
 .panels.grabbing>.panel.focus>.bar {
 	background-image: linear-gradient(#2eff9d 4px, transparent 4px);
