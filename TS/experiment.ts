@@ -17,7 +17,6 @@ image.classList.add("random-image");
 panel_image.content.append(image);
 
 const panel_gradient: Panel = panels.new_panel();
-panel_gradient.grab.textContent = "Blade Runner 2049";
 const gradient = document.createElement("div");
 gradient.classList.add("gradient");
 panel_gradient.content.append(gradient);

@@ -56,9 +56,9 @@
 .panel>.bar>.grab {
 	min-width: var(--panels-bar-height);
 	flex-grow: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+}
+.panel>.bar>.flexible {
+	background-position: -40px -80px;
 }
 .panel>.bar>.close {
 	position: relative;
@@ -74,23 +74,24 @@
 	background-image: linear-gradient(#000000 4px, transparent 4px);
 }
 .panel>.bar>.resize {
-	background-position: -60px 0px;
+	background-position: -80px 0px;
 }
 .panel>.bar>.alternate {
-	background-position: 0px -30px;
+	background-position: 0px -40px;
 }
 .panel>.bar>.alternate.restore {
-	background-position: -30px -30px;
+	background-position: -80px -80px;
 }
 .panel.squish>.bar>.resize,
 .panel.squish>.bar>.alternate {
 	display: none;
 }
 .panel>.bar>.squish {
-	background-position: 0px -60px;
+	background-position: 0px -80px;
 }
+/* TODO rename squish > squish bad practice, maybe squished */
 .panel.squish>.bar>.squish {
-	background-position: -60px -30px;
+	background-position: -80px -40px;
 }
 .panel>.bar>.option {
 	cursor: pointer;

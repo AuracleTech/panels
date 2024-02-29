@@ -62,20 +62,25 @@ interface PanelOptions {
 	spawn_at_cursor: boolean;
 }
 class Panel extends HTMLElement {
-	bar: HTMLDivElement = document.createElement("div");
-	close: HTMLDivElement = document.createElement("div");
-	grab: HTMLDivElement = document.createElement("div");
-	resize: HTMLDivElement = document.createElement("div");
-	alternate: HTMLDivElement = document.createElement("div");
-	squish: HTMLDivElement = document.createElement("div");
-	content: HTMLDivElement = document.createElement("div");
 	parent: Panels;
 	options: PanelOptions = {
+		// TODO improve resizable attribute | custom resize and flexible resize
 		resizable: false,
 		preservable: false,
 		spawn_at_random: true,
 		spawn_at_cursor: false,
 	};
+
+	bar: HTMLDivElement = document.createElement("div");
+	close: HTMLDivElement = document.createElement("div");
+	grab: HTMLDivElement = document.createElement("div");
+	flexible: HTMLDivElement = document.createElement("div");
+	resize: HTMLDivElement = document.createElement("div");
+	alternate: HTMLDivElement = document.createElement("div");
+	squish: HTMLDivElement = document.createElement("div");
+	content: HTMLDivElement = document.createElement("div");
+
+	// NUKE not sure if we need this in the first place
 	preserved?: {
 		width: number;
 		height: number;
@@ -91,7 +96,6 @@ class Panel extends HTMLElement {
 		super();
 
 		this.parent = parent;
-
 		this.options = {
 			...this.options,
 			...options,
@@ -101,20 +105,20 @@ class Panel extends HTMLElement {
 		this.bar.classList.add("bar");
 		this.close.classList.add("close", "option");
 		this.grab.classList.add("grab");
+		this.flexible.classList.add("flexible", "option");
 		this.resize.classList.add("resize", "option");
 		this.alternate.classList.add("alternate", "option");
 		this.squish.classList.add("squish", "option");
 		this.content.classList.add("content");
 
 		this.bar.append(this.close, this.grab);
+		if (this.options.resizable) this.bar.append(this.flexible);
 		if (this.options.resizable) this.bar.append(this.resize);
 		if (this.options.preservable) this.bar.append(this.alternate);
 		this.bar.append(this.squish);
 		this.append(this.bar, this.content);
 
-		this.addEventListener("pointerdown", () => {
-			this.parent.set_focused(this);
-		});
+		this.addEventListener("pointerdown", () => this.parent.set_focused(this));
 		const resizeObserver = new ResizeObserver((entries) =>
 			entries.forEach((entry) => {
 				const panel = entry.target as Panel;
@@ -127,6 +131,7 @@ class Panel extends HTMLElement {
 		if (this.options.resizable)
 			this.grab.addEventListener("dblclick", () => this.maximize());
 		else this.grab.addEventListener("dblclick", () => this.fsquish());
+		this.flexible.addEventListener("pointerup", () => this.fflexible());
 		this.resize.addEventListener("click", () => this.resizing());
 		this.alternate.addEventListener("click", () => this.falternate());
 		this.squish.addEventListener("click", () => this.fsquish());
@@ -167,6 +172,13 @@ class Panel extends HTMLElement {
 		this.parent.classList.add("numb", "grabbing");
 		addEventListener("pointermove", pointermove);
 		addEventListener("pointerup", pointerup, { once: true });
+	}
+
+	fflexible() {
+		console.log("flexible");
+		// remove width and height from style attribute
+		this.style.width = "";
+		this.style.height = "";
 	}
 
 	resizing() {
