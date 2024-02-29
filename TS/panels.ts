@@ -167,10 +167,9 @@ class Panel extends HTMLElement {
 			this.close.removeEventListener("pointerleave", abort);
 			this.close.removeEventListener("transitionend", transitionend);
 		};
-		const poitnerup = (ev: PointerEvent) => {
-			if (allowed) {
-				if (ev.target === this.close) this.parent.close_panel(this);
-			} else abort();
+		const poitnerup = () => {
+			if (allowed) this.parent.close_panel(this);
+			else abort();
 		};
 		const transitionend = () => (allowed = true);
 		this.close.addEventListener("pointerup", poitnerup, { once: true });
