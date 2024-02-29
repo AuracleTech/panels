@@ -64,9 +64,9 @@ $panel-bar-height: 40px;
 			}
 
 			& > .close {
-				&:active:hover {
+				&.closing {
 					background-color: #ab0b52 !important;
-					transition: background-color 0.2s;
+					transition: background-color 0.25s ease-out;
 				}
 			}
 

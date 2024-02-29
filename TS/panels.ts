@@ -155,12 +155,26 @@ class Panel extends HTMLElement {
 
 	fclose(ev: MouseEvent) {
 		ev.stopPropagation();
-		const pointerup = (ev: PointerEvent) => {
-			if (ev.target === this.close) this.parent.close_panel(this);
+		if (ev.button !== 0) return;
+
+		let allowed = false;
+		this.close.classList.add("closing");
+
+		const abort = () => {
+			allowed = false;
+			this.close.classList.remove("closing");
+			this.close.removeEventListener("pointerup", abort);
+			this.close.removeEventListener("pointerleave", abort);
+			this.close.removeEventListener("transitionend", transitionend);
 		};
-		const transitionend = () => {
-			addEventListener("pointerup", pointerup, { once: true });
+		const poitnerup = (ev: PointerEvent) => {
+			if (allowed) {
+				if (ev.target === this.close) this.parent.close_panel(this);
+			} else abort();
 		};
+		const transitionend = () => (allowed = true);
+		this.close.addEventListener("pointerup", poitnerup, { once: true });
+		this.close.addEventListener("pointerleave", abort, { once: true });
 		this.close.addEventListener("transitionend", transitionend, { once: true });
 	}
 
