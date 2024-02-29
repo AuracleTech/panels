@@ -14,16 +14,11 @@ const panel_resizable: Panel = panels.new_panel({
 	spawn_at_cursor: false,
 });
 const image = document.createElement("div");
-image.style.backgroundImage =
-	"url('https://source.unsplash.com/random/300x300')";
-image.style.width = "300px";
-image.style.height = "300px";
+image.classList.add("random-image");
 panel_resizable.content.append(image);
 
 const panel_3: Panel = panels.new_panel();
 panel_3.grab.textContent = "Blade Runner 2049";
 const grad = document.createElement("div");
-grad.style.backgroundImage = "linear-gradient(45deg, #1edead 0%, #00aced 100%)";
-grad.style.width = "420px";
-grad.style.height = "180px";
+grad.classList.add("gradient");
 panel_3.content.append(grad);
