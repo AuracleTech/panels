@@ -76,12 +76,12 @@ class Panel extends HTMLElement {
 	close: HTMLDivElement = document.createElement("div");
 	grab: HTMLDivElement = document.createElement("div");
 	flexible: HTMLDivElement = document.createElement("div");
+	maximize: HTMLDivElement = document.createElement("div");
 	resize: HTMLDivElement = document.createElement("div");
-	alternate: HTMLDivElement = document.createElement("div");
+	preserve: HTMLDivElement = document.createElement("div");
 	squish: HTMLDivElement = document.createElement("div");
 	content: HTMLDivElement = document.createElement("div");
 
-	// NUKE not sure if we need this in the first place
 	preserved?: {
 		width: number;
 		height: number;
@@ -107,15 +107,16 @@ class Panel extends HTMLElement {
 		this.close.classList.add("close", "option");
 		this.grab.classList.add("grab");
 		this.flexible.classList.add("flexible", "option", "hidden");
+		this.maximize.classList.add("maximize", "option");
 		this.resize.classList.add("resize", "option");
-		this.alternate.classList.add("alternate", "option");
+		this.preserve.classList.add("preserve", "option");
 		this.squish.classList.add("squish", "option");
 		this.content.classList.add("content");
 
 		this.bar.append(this.close, this.grab);
-		if (this.options.resizable) this.bar.append(this.flexible);
-		if (this.options.resizable) this.bar.append(this.resize);
-		if (this.options.preservable) this.bar.append(this.alternate);
+		if (this.options.resizable)
+			this.bar.append(this.flexible, this.resize, this.maximize);
+		if (this.options.preservable) this.bar.append(this.preserve);
 		this.bar.append(this.squish);
 		this.append(this.bar, this.content);
 
@@ -132,12 +133,10 @@ class Panel extends HTMLElement {
 		resizeObserver.observe(this);
 		this.close.addEventListener("pointerdown", (ev) => this.fclose(ev));
 		this.grab.addEventListener("pointerdown", (ev) => this.fgrab(ev));
-		if (this.options.resizable)
-			this.grab.addEventListener("dblclick", () => this.maximize());
-		else this.grab.addEventListener("dblclick", () => this.fsquish());
 		this.flexible.addEventListener("pointerup", () => this.fflexible());
+		this.maximize.addEventListener("click", () => this.fmaximize());
 		this.resize.addEventListener("click", () => this.resizing());
-		this.alternate.addEventListener("click", () => this.falternate());
+		this.preserve.addEventListener("click", () => this.fpreserve());
 		this.squish.addEventListener("click", () => this.fsquish());
 
 		if (this.options.spawn_at_random)
@@ -198,9 +197,8 @@ class Panel extends HTMLElement {
 	}
 
 	fflexible() {
-		this.style.width = "";
-		this.style.height = "";
 		this.flexible.classList.add("hidden");
+		this.fresize();
 	}
 
 	resizing() {
@@ -243,8 +241,8 @@ class Panel extends HTMLElement {
 		return { x, y };
 	}
 
-	falternate() {
-		this.alternate.classList.toggle("restore");
+	fpreserve() {
+		this.preserve.classList.toggle("restore");
 		if (!this.preserved)
 			this.preserved = {
 				width: this.clientWidth,
@@ -275,24 +273,17 @@ class Panel extends HTMLElement {
 					  }
 					: undefined;
 
-			this.style.width = "";
-			this.style.height = "";
+			this.fresize();
 		}
 
 		this.classList.toggle("squished");
 	}
 
-	maximize() {
-		if (
-			this.clientWidth === this.parent.clientWidth &&
-			this.clientHeight === this.parent.clientHeight
-		)
-			this.fresize();
-		else
-			this.fresize({
-				width: this.parent.clientWidth,
-				height: this.parent.clientHeight,
-			});
+	fmaximize() {
+		this.fresize({
+			width: this.parent.clientWidth,
+			height: this.parent.clientHeight,
+		});
 	}
 
 	reposition(positions?: { top: number; left: number }) {
@@ -315,9 +306,18 @@ class Panel extends HTMLElement {
 
 	fresize(size?: { width?: number; height?: number }) {
 		const { width, height } = size || {};
-		this.style.width = width !== null ? `${width}px` : "";
-		this.style.height = height !== null ? `${height}px` : "";
-		if (this.options.resizable) this.flexible.classList.remove("hidden");
+		this.style.width = width !== undefined ? `${width}px` : "";
+		this.style.height = height !== undefined ? `${height}px` : "";
+		if (this.options.resizable) {
+			if (width !== undefined && height !== undefined)
+				this.flexible.classList.remove("hidden");
+			if (
+				this.clientWidth === this.parent.clientWidth &&
+				this.clientHeight === this.parent.clientHeight
+			)
+				this.maximize.classList.add("hidden");
+			else this.maximize.classList.remove("hidden");
+		}
 		this.dispatchEvent(
 			new CustomEvent("resize", { detail: { width, height } })
 		);

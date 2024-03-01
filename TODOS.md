@@ -1,7 +1,7 @@
 # TODO
 
 - make .panel min-width depend on the amount of .bar .option
-- test/fix double click grab and double click squish
+- nuke .option ? maybe... yeah it's awful
 
 - example image
 - usage README.md

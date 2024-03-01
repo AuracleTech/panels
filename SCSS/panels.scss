@@ -39,9 +39,10 @@ $panel-bar-height: 40px;
 
 		&.squished {
 			& > .bar {
-				& > .resize,
-				& > .alternate,
-				& > .flexible {
+				& > .option.maximize,
+				& > .option.resize,
+				& > .option.preserve,
+				& > .option.flexible {
 					display: none;
 				}
 
@@ -86,7 +87,11 @@ $panel-bar-height: 40px;
 					background-position: -80px 0px;
 				}
 
-				&.alternate {
+				&.maximize {
+					background-position: -80px -80px;
+				}
+
+				&.preserve {
 					background-position: 0px -40px;
 
 					&.restore {
