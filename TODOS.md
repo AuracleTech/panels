@@ -1,7 +1,7 @@
 # TODO
 
 - make .panel min-width depend on the amount of .bar .option
-- improve resizable option | custom resize and flexible are both resize so its unprecise
+- test/fix double click grab and double click squish
 
 - example image
 - usage README.md

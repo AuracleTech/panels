@@ -119,6 +119,9 @@ class Panel extends HTMLElement {
 		this.bar.append(this.squish);
 		this.append(this.bar, this.content);
 
+		let amount = this.bar.childNodes.length;
+		this.style.minWidth = `${40 * amount}px`;
+
 		this.addEventListener("pointerdown", () => this.parent.set_focused(this));
 		const resizeObserver = new ResizeObserver((entries) =>
 			entries.forEach((entry) => {
@@ -130,7 +133,7 @@ class Panel extends HTMLElement {
 		this.close.addEventListener("pointerdown", (ev) => this.fclose(ev));
 		this.grab.addEventListener("pointerdown", (ev) => this.fgrab(ev));
 		if (this.options.resizable)
-			this.grab.addEventListener("dblclick", () => this.maximize()); // TEST
+			this.grab.addEventListener("dblclick", () => this.maximize());
 		else this.grab.addEventListener("dblclick", () => this.fsquish());
 		this.flexible.addEventListener("pointerup", () => this.fflexible());
 		this.resize.addEventListener("click", () => this.resizing());

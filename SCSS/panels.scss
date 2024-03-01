@@ -23,7 +23,6 @@ $panel-bar-height: 40px;
 		position: fixed;
 		max-width: 100%;
 		max-height: 100%;
-		min-width: 240px;
 		min-height: $panel-bar-height;
 		overflow: hidden;
 		font-family: Arial, sans-serif;
@@ -46,7 +45,7 @@ $panel-bar-height: 40px;
 					display: none;
 				}
 
-				& > .squish {
+				& > .option.squish {
 					background-position: -80px -40px;
 				}
 			}
@@ -55,54 +54,56 @@ $panel-bar-height: 40px;
 		& > .bar {
 			flex-shrink: 0;
 			display: flex;
-			height: $panel-bar-height;
+			min-height: $panel-bar-height;
 			width: 100%;
 
-			& > .grab {
+			& > div {
+				cursor: pointer;
 				min-width: $panel-bar-height;
+				min-height: $panel-bar-height;
+			}
+
+			& > .grab {
 				flex-grow: 1;
 			}
 
-			& > .close {
-				&.closing {
-					background-color: #ab0b52 !important;
-					transition: background-color 0.25s ease-out;
-				}
-			}
-
-			& > .flexible {
-				background-position: -40px -80px;
-			}
-
-			& > .resize {
-				background-position: -80px 0px;
-			}
-
-			& > .alternate {
-				background-position: 0px -40px;
-
-				&.restore {
-					background-position: -40px -40px;
-				}
-			}
-
-			& > .squish {
-				background-position: 0px -80px;
-			}
-
 			& > .option {
-				cursor: pointer;
-				min-height: $panel-bar-height;
-				min-width: $panel-bar-height;
 				background-repeat: no-repeat;
 				background-image: url("../IMG/panels.png");
 
-				&.hidden {
-					display: none;
+				&.close {
+					&.closing {
+						background-color: #ab0b52 !important;
+						transition: background-color 0.25s ease-out;
+					}
+				}
+
+				&.flexible {
+					background-position: -40px -80px;
+				}
+
+				&.resize {
+					background-position: -80px 0px;
+				}
+
+				&.alternate {
+					background-position: 0px -40px;
+
+					&.restore {
+						background-position: -40px -40px;
+					}
+				}
+
+				&.squish {
+					background-position: 0px -80px;
 				}
 
 				&:hover {
 					background-color: #eeeeee22;
+				}
+
+				&.hidden {
+					display: none;
 				}
 			}
 		}
