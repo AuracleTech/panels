@@ -54,9 +54,9 @@ $panel-bar-height: 40px;
 
 		& > .bar {
 			flex-shrink: 0;
-			display: flex;
 			min-height: $panel-bar-height;
 			width: 100%;
+			display: flex;
 
 			& > div {
 				cursor: pointer;
