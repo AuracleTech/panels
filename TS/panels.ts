@@ -258,23 +258,24 @@ class Panel extends HTMLElement {
 	}
 
 	fsquish() {
-		if (this.classList.contains("squished"))
+		if (this.classList.contains("squished")) {
 			if (this.options.resizable && this.squished) this.fresize(this.squished);
-			else {
-				let width = this.style.width;
-				let height = this.style.height;
+		} else {
+			let width = this.style.width;
+			let height = this.style.height;
 
-				this.squished =
-					width || height
-						? {
-								width: parseInt(width),
-								height: parseInt(height),
-						  }
-						: undefined;
+			this.squished =
+				width || height
+					? {
+							width: parseInt(width),
+							height: parseInt(height),
+					  }
+					: undefined;
 
-				this.style.width = "";
-				this.style.height = "";
-			}
+			this.style.width = "";
+			this.style.height = "";
+		}
+
 		this.classList.toggle("squished");
 	}
 
