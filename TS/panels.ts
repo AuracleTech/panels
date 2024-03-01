@@ -89,8 +89,8 @@ class Panel extends HTMLElement {
 		left: number;
 	};
 	squished?: {
-		size: { width: number; height: number };
-		pos: { top: number; left: number };
+		width: number;
+		height: number;
 	};
 
 	constructor(parent: Panels, options?: PanelOptions) {
@@ -130,7 +130,7 @@ class Panel extends HTMLElement {
 		this.close.addEventListener("pointerdown", (ev) => this.fclose(ev));
 		this.grab.addEventListener("pointerdown", (ev) => this.fgrab(ev));
 		if (this.options.resizable)
-			this.grab.addEventListener("dblclick", () => this.maximize());
+			this.grab.addEventListener("dblclick", () => this.maximize()); // TEST
 		else this.grab.addEventListener("dblclick", () => this.fsquish());
 		this.flexible.addEventListener("pointerup", () => this.fflexible());
 		this.resize.addEventListener("click", () => this.resizing());
@@ -258,23 +258,23 @@ class Panel extends HTMLElement {
 	}
 
 	fsquish() {
-		if (this.squished) {
-			if (this.options.resizable) this.fresize(this.squished.size);
-			else this.reposition(this.squished.pos);
-			this.squished = undefined;
-		} else {
-			this.squished = {
-				size: {
-					width: this.clientWidth,
-					height: this.clientHeight,
-				},
-				pos: {
-					top: this.offsetTop,
-					left: this.offsetLeft,
-				},
-			};
-			this.fresize();
-		}
+		if (this.classList.contains("squished"))
+			if (this.options.resizable && this.squished) this.fresize(this.squished);
+			else {
+				let width = this.style.width;
+				let height = this.style.height;
+
+				this.squished =
+					width || height
+						? {
+								width: parseInt(width),
+								height: parseInt(height),
+						  }
+						: undefined;
+
+				this.style.width = "";
+				this.style.height = "";
+			}
 		this.classList.toggle("squished");
 	}
 
