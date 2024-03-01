@@ -137,6 +137,11 @@ $panel-bar-height: 40px;
 				background-color: #8080ad;
 				border-radius: 1px;
 			}
+
+			&::selection {
+				background-color: #ff8a00;
+				color: #111;
+			}
 		}
 	}
 }
