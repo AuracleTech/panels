@@ -97,6 +97,10 @@ $panel-bar-height: 40px;
 				background-repeat: no-repeat;
 				background-image: url("../IMG/panels.png");
 
+				&.hidden {
+					display: none;
+				}
+
 				&:hover {
 					background-color: #eeeeee22;
 				}

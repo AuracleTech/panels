@@ -106,7 +106,7 @@ class Panel extends HTMLElement {
 		this.bar.classList.add("bar");
 		this.close.classList.add("close", "option");
 		this.grab.classList.add("grab");
-		this.flexible.classList.add("flexible", "option");
+		this.flexible.classList.add("flexible", "option", "hidden");
 		this.resize.classList.add("resize", "option");
 		this.alternate.classList.add("alternate", "option");
 		this.squish.classList.add("squish", "option");
@@ -195,10 +195,9 @@ class Panel extends HTMLElement {
 	}
 
 	fflexible() {
-		console.log("flexible");
-		// remove width and height from style attribute
 		this.style.width = "";
 		this.style.height = "";
+		this.flexible.classList.add("hidden");
 	}
 
 	resizing() {
@@ -314,6 +313,7 @@ class Panel extends HTMLElement {
 		const { width, height } = size || {};
 		this.style.width = width !== null ? `${width}px` : "";
 		this.style.height = height !== null ? `${height}px` : "";
+		if (this.options.resizable) this.flexible.classList.remove("hidden");
 		this.dispatchEvent(
 			new CustomEvent("resize", { detail: { width, height } })
 		);
