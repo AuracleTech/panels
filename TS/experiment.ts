@@ -1,3 +1,4 @@
+import "../SCSS/panels.scss";
 import { Panels, Panel } from "./panels.ts";
 
 const panels = new Panels();
