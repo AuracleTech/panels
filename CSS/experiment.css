@@ -19,6 +19,11 @@ body {
     border-radius: 5px;
 }
 
+.text {
+    margin: 10px;
+    text-align: center;
+}
+
 .random-image {
     width: 400px;
     height: 400px;

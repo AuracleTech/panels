@@ -5,7 +5,10 @@ const panels = new Panels();
 document.body.append(panels);
 
 const panel_text: Panel = panels.new_panel();
-panel_text.content.textContent = "Hello, world!";
+const text = document.createElement("div");
+text.classList.add("text");
+text.textContent = "Hello, world!";
+panel_text.content.append(text);
 
 const panel_image: Panel = panels.new_panel({
 	resizable: true,
