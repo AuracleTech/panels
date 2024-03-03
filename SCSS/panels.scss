@@ -1,16 +1,23 @@
 $panel-bar-height: 40px;
 
 .panels {
+	display: block;
+	overflow: hidden;
+	background-color: #0d1a26;
 	user-select: none;
 
 	&.resizing {
 		pointer-events: none;
-		background: #0f071e;
+
+		& > .panel.focus {
+			& > .bar {
+				background: #7e2eff;
+			}
+		}
 	}
 
 	&.grabbing {
 		pointer-events: none;
-		background: #071517;
 
 		& > .panel.focus {
 			& > .bar {
@@ -26,7 +33,7 @@ $panel-bar-height: 40px;
 		min-height: $panel-bar-height;
 		overflow: hidden;
 		font-family: Arial, sans-serif;
-		background-color: #1e1d2e;
+		background-color: #182b3c;
 		color: #e3e8e5;
 		display: flex;
 		flex-direction: column;

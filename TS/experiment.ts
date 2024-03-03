@@ -17,7 +17,7 @@ const image = document.createElement("div");
 image.classList.add("random-image");
 panel_image.content.append(image);
 
-const panel_gradient: Panel = panels.new_panel();
-const gradient = document.createElement("div");
-gradient.classList.add("gradient");
-panel_gradient.content.append(gradient);
+const panel_icons: Panel = panels.new_panel();
+const icons = document.createElement("div");
+icons.classList.add("icons");
+panel_icons.content.append(icons);

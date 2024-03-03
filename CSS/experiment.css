@@ -6,7 +6,7 @@ body {
 
 body {
     margin: 0;
-    background-image: linear-gradient(45deg, #3F135E 0%, #144968 100%);
+    background-image: linear-gradient(45deg, #3c1955, #144968);
 }
 
 .panels {
@@ -16,20 +16,20 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 3px;
-    overflow: hidden;
-    background-color: #04040E;
+    border-radius: 5px;
 }
 
 .random-image {
-    width: 300px;
-    height: 300px;
-    background-image: url('https://source.unsplash.com/random/300x300');
+    width: 400px;
+    height: 400px;
+    background-image: url('https://source.unsplash.com/random/400x400');
 
 }
 
-.gradient {
-    width: 420px;
-    height: 180px;
-    background-image: linear-gradient(45deg, #1edead 0%, #00aced 100%);
+.icons {
+    width: 350px;
+    height: 310px;
+    background-image: url('../../IMG/panels.png');
+    background-position: center center;
+    background-repeat: no-repeat;
 }
