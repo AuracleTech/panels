@@ -64,8 +64,6 @@ body {
 			}
 
 			& > .bar {
-				flex-shrink: 0;
-				min-height: $panel_bar_height;
 				width: 100%;
 				display: flex;
 
