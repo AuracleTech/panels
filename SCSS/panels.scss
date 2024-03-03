@@ -1,8 +1,8 @@
 $panel_bar_height: 40px;
 
 body {
-	&.resizing > .panels,
-	&.grabbing > .panels {
+	&.resizing>.panels,
+	&.grabbing>.panels {
 		pointer-events: none;
 	}
 
@@ -14,11 +14,11 @@ body {
 		cursor: crosshair;
 	}
 
-	&.resizing > .panels > .panel.focus > .bar {
+	&.resizing>.panels>.panel.focus>.bar {
 		background: #7e2eff;
 	}
 
-	&.grabbing > .panels > .panel.focus > .bar {
+	&.grabbing>.panels>.panel.focus>.bar {
 		background: #2eff9d;
 	}
 
@@ -32,7 +32,7 @@ body {
 		background-color: #0d1a26;
 		color: #e3e8e5;
 
-		& > .panel {
+		&>.panel {
 			position: fixed;
 			max-width: 100%;
 			max-height: 100%;
@@ -43,42 +43,42 @@ body {
 			flex-direction: column;
 
 			&.focus {
-				& > .bar {
+				&>.bar {
 					background: #2fa6ff;
 				}
 			}
 
 			&.squished {
-				& > .bar {
-					& > .option.maximize,
-					& > .option.resize,
-					& > .option.preserve,
-					& > .option.flexible {
+				&>.bar {
+					&>.option.maximize,
+					&>.option.resize,
+					&>.option.preserve,
+					&>.option.flexible {
 						display: none;
 					}
 
-					& > .option.squish {
+					&>.option.squish {
 						background-position: -80px -40px;
 					}
 				}
 			}
 
-			& > .bar {
+			&>.bar {
 				width: 100%;
 				display: flex;
 
-				& > div {
+				&>div {
 					cursor: pointer;
 					min-width: $panel_bar_height;
 					min-height: $panel_bar_height;
 				}
 
-				& > .grab {
+				&>.grab {
 					cursor: grab;
 					flex-grow: 1;
 				}
 
-				& > .option {
+				&>.option {
 					background-repeat: no-repeat;
 					background-image: url("../../IMG/panels.png");
 
@@ -123,14 +123,12 @@ body {
 				}
 			}
 
-			&.squished > .content {
+			&.squished>.content {
 				display: none;
 			}
 
-			& > .content {
-				width: 100%;
-				height: 100%;
-				overflow: auto;
+			&>.content {
+				overflow: hidden;
 				user-select: text;
 
 				&::-webkit-scrollbar {
