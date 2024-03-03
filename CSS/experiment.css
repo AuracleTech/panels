@@ -11,8 +11,8 @@ body {
 
 .panels {
     position: fixed;
-    width: 85%;
-    height: 85%;
+    width: 85% !important;
+    height: 85% !important;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

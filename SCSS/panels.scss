@@ -1,153 +1,159 @@
-$panel-bar-height: 40px;
+$panel_bar_height: 40px;
 
-.panels {
-	display: block;
-	overflow: hidden;
-	background-color: #0d1a26;
-	user-select: none;
-
-	&.resizing {
+body {
+	&.resizing > .panels,
+	&.grabbing > .panels {
 		pointer-events: none;
-
-		& > .panel.focus {
-			& > .bar {
-				background: #7e2eff;
-			}
-		}
 	}
 
 	&.grabbing {
-		pointer-events: none;
-
-		& > .panel.focus {
-			& > .bar {
-				background: #2eff9d;
-			}
-		}
+		cursor: grabbing;
 	}
 
-	& > .panel {
-		position: fixed;
-		max-width: 100%;
-		max-height: 100%;
-		min-height: $panel-bar-height;
+	&.resizing {
+		cursor: crosshair;
+	}
+
+	&.resizing > .panels > .panel.focus > .bar {
+		background: #7e2eff;
+	}
+
+	&.grabbing > .panels > .panel.focus > .bar {
+		background: #2eff9d;
+	}
+
+	.panels {
+		display: block;
+		width: 100%;
+		height: 100%;
 		overflow: hidden;
+		user-select: none;
 		font-family: Arial, sans-serif;
-		background-color: #182b3c;
+		background-color: #0d1a26;
 		color: #e3e8e5;
-		display: flex;
-		flex-direction: column;
 
-		&.focus {
-			& > .bar {
-				background: #2fa6ff;
-			}
-		}
-
-		&.squished {
-			& > .bar {
-				& > .option.maximize,
-				& > .option.resize,
-				& > .option.preserve,
-				& > .option.flexible {
-					display: none;
-				}
-
-				& > .option.squish {
-					background-position: -80px -40px;
-				}
-			}
-		}
-
-		& > .bar {
-			flex-shrink: 0;
-			min-height: $panel-bar-height;
-			width: 100%;
+		& > .panel {
+			position: fixed;
+			max-width: 100%;
+			max-height: 100%;
+			min-height: $panel_bar_height;
+			background-color: #182b3c;
+			overflow: hidden;
 			display: flex;
+			flex-direction: column;
 
-			& > div {
-				cursor: pointer;
-				min-width: $panel-bar-height;
-				min-height: $panel-bar-height;
+			&.focus {
+				& > .bar {
+					background: #2fa6ff;
+				}
 			}
 
-			& > .grab {
-				flex-grow: 1;
-			}
+			&.squished {
+				& > .bar {
+					& > .option.maximize,
+					& > .option.resize,
+					& > .option.preserve,
+					& > .option.flexible {
+						display: none;
+					}
 
-			& > .option {
-				background-repeat: no-repeat;
-				background-image: url("../../IMG/panels.png");
-
-				&.close {
-					&.closing {
-						background-color: #ab0b52 !important;
-						transition: background-color 0.25s ease-out;
+					& > .option.squish {
+						background-position: -80px -40px;
 					}
 				}
+			}
 
-				&.flexible {
-					background-position: -40px -80px;
+			& > .bar {
+				flex-shrink: 0;
+				min-height: $panel_bar_height;
+				width: 100%;
+				display: flex;
+
+				& > div {
+					cursor: pointer;
+					min-width: $panel_bar_height;
+					min-height: $panel_bar_height;
 				}
 
-				&.resize {
-					background-position: -80px 0px;
+				& > .grab {
+					cursor: grab;
+					flex-grow: 1;
 				}
 
-				&.maximize {
-					background-position: -80px -80px;
-				}
+				& > .option {
+					background-repeat: no-repeat;
+					background-image: url("../../IMG/panels.png");
 
-				&.preserve {
-					background-position: 0px -40px;
+					&.close {
+						&.closing {
+							background-color: #ab0b52 !important;
+							transition: background-color 0.25s ease-out;
+						}
+					}
 
-					&.restore {
-						background-position: -40px -40px;
+					&.flexible {
+						background-position: -40px -80px;
+					}
+
+					&.resize {
+						background-position: -80px 0px;
+					}
+
+					&.maximize {
+						background-position: -80px -80px;
+					}
+
+					&.preserve {
+						background-position: 0px -40px;
+
+						&.restore {
+							background-position: -40px -40px;
+						}
+					}
+
+					&.squish {
+						background-position: 0px -80px;
+					}
+
+					&:hover {
+						background-color: #eeeeee22;
+					}
+
+					&.hidden {
+						display: none;
 					}
 				}
+			}
 
-				&.squish {
-					background-position: 0px -80px;
+			&.squished > .content {
+				display: none;
+			}
+
+			& > .content {
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				user-select: text;
+
+				&::-webkit-scrollbar {
+					width: 8px;
+					height: 8px;
+					background-color: transparent;
 				}
 
-				&:hover {
-					background-color: #eeeeee22;
+				&::-webkit-scrollbar-corner {
+					background-color: transparent;
 				}
 
-				&.hidden {
-					display: none;
+				&::-webkit-scrollbar-thumb {
+					background-color: #8080ad;
+					border-radius: 1px;
 				}
-			}
-		}
 
-		&.squished > .content {
-			display: none;
-		}
-
-		& > .content {
-			width: 100%;
-			height: 100%;
-			overflow: auto;
-			user-select: text;
-
-			&::-webkit-scrollbar {
-				width: 8px;
-				height: 8px;
-				background-color: transparent;
-			}
-
-			&::-webkit-scrollbar-corner {
-				background-color: transparent;
-			}
-
-			&::-webkit-scrollbar-thumb {
-				background-color: #8080ad;
-				border-radius: 1px;
-			}
-
-			&::selection {
-				background-color: #ff8a00;
-				color: #111;
+				&::selection {
+					background-color: #ff8a00;
+					color: #111;
+				}
 			}
 		}
 	}
