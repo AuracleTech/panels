@@ -38,3 +38,12 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
 }
+
+.overflow-wrapper {
+    overflow: auto;
+}
+.overflow-content {
+    width: 3200px;
+    height: 1800px;
+    background-image: linear-gradient(90deg, transparent, #00aced99);
+}

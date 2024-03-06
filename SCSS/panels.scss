@@ -14,12 +14,24 @@ body {
 		cursor: crosshair;
 	}
 
-	&.resizing>.panels>.panel.focus>.bar {
-		background: #7e2eff;
+	&.resizing>.panels>.panel.focus {
+		&>.bar {
+			background: #7e2eff;
+		}
+		&>.content::-webkit-scrollbar-thumb {
+			background-color: #7e2eff;
+		}
+
 	}
 
-	&.grabbing>.panels>.panel.focus>.bar {
-		background: #2eff9d;
+	&.grabbing>.panels>.panel.focus {
+		&>.bar {
+			background: #2eff9d;
+		}
+		&>.content::-webkit-scrollbar-thumb {
+			background-color: #2eff9d;
+		}
+
 	}
 
 	.panels {
@@ -60,6 +72,10 @@ body {
 					&>.option.squish {
 						background-position: -80px -40px;
 					}
+				}
+
+				&>.content {
+					display: none;
 				}
 			}
 
@@ -123,13 +139,11 @@ body {
 				}
 			}
 
-			&.squished>.content {
-				display: none;
-			}
-
 			&>.content {
-				overflow: hidden;
+				flex-grow: 1;
+				overflow: auto;
 				user-select: text;
+				display: grid;
 
 				&::-webkit-scrollbar {
 					width: 8px;
@@ -142,8 +156,7 @@ body {
 				}
 
 				&::-webkit-scrollbar-thumb {
-					background-color: #8080ad;
-					border-radius: 1px;
+					background-color: #2fa6ff;
 				}
 
 				&::selection {
