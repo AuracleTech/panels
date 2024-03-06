@@ -58,6 +58,10 @@ body {
 				&>.bar {
 					background: #2fa6ff;
 				}
+
+				&>.content::-webkit-scrollbar-thumb {
+					background-color: #2fa6ff;
+				}
 			}
 
 			&.squished {
@@ -156,7 +160,7 @@ body {
 				}
 
 				&::-webkit-scrollbar-thumb {
-					background-color: #2fa6ff;
+					background-color: #182b3c;
 				}
 
 				&::selection {
