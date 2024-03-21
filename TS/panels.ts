@@ -131,7 +131,7 @@ class Panel extends HTMLElement {
 		resizeObserver.observe(this);
 		this.close.addEventListener("pointerdown", (ev) => this.fclose(ev));
 		this.grab.addEventListener("pointerdown", (ev) => this.fgrab(ev));
-		this.flexible.addEventListener("pointerup", () => this.fflexible());
+		this.flexible.addEventListener("click", () => this.fflexible());
 		this.maximize.addEventListener("click", () => this.fmaximize());
 		this.resize.addEventListener("click", () => this.resizing());
 		this.preserve.addEventListener("click", () => this.fpreserve());
