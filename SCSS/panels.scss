@@ -18,8 +18,10 @@ body {
 		&>.bar {
 			background: #7e2eff;
 		}
-		&>.content::-webkit-scrollbar-thumb {
-			background-color: #7e2eff;
+		&>.content {
+			::-webkit-scrollbar-thumb {
+				background-color: #7e2eff;
+			}
 		}
 
 	}
@@ -28,8 +30,10 @@ body {
 		&>.bar {
 			background: #2eff9d;
 		}
-		&>.content::-webkit-scrollbar-thumb {
-			background-color: #2eff9d;
+		&>.content {
+			::-webkit-scrollbar-thumb {
+				background-color: #2eff9d;
+			}
 		}
 
 	}
@@ -59,8 +63,10 @@ body {
 					background: #2fa6ff;
 				}
 
-				&>.content::-webkit-scrollbar-thumb {
-					background-color: #2fa6ff;
+				&>.content {
+					::-webkit-scrollbar-thumb {
+						background-color: #2fa6ff;
+					}
 				}
 			}
 
@@ -149,21 +155,21 @@ body {
 				user-select: text;
 				display: grid;
 
-				&::-webkit-scrollbar {
+				::-webkit-scrollbar {
 					width: 8px;
 					height: 8px;
 					background-color: transparent;
 				}
 
-				&::-webkit-scrollbar-corner {
+				::-webkit-scrollbar-corner {
 					background-color: transparent;
 				}
 
-				&::-webkit-scrollbar-thumb {
+				::-webkit-scrollbar-thumb {
 					background-color: #182b3c;
 				}
 
-				&::selection {
+				::selection {
 					background-color: #ff8a00;
 					color: #111;
 				}
